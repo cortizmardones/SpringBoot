@@ -24,7 +24,7 @@ import com.bolsadeideas.springboot.web.app.model.Usuario;
 @RequestMapping("/app")
 public class IndexController {
 	
-	//Este atributo es para que la clase Inyeccion quede como inyección y no tenga que utilizar la palabra reservada 'new' object.
+	//Autowired - Este atributo es para que la clase Inyeccion quede como inyección y no tenga que utilizar la palabra reservada 'new' object.
 	//Ademas agrego un qualifier para indicar que dependencia quiero implementacion quiero inyectar.
 	@Autowired
 	@Qualifier("MiservicioComplejo")
@@ -120,6 +120,7 @@ public class IndexController {
 		return "usuarios";
 	}
 	
+	//En este metodo lo importante es el atributo NAME desde el HTML5 (Ese es el que hace que lleguen los valores al controlador)
 	@RequestMapping("/agregar")
 	public String agregar(@RequestParam(name="nombre") String nombre, @RequestParam(name="apellido") String apellido , @RequestParam(name="correo") String correo , Model model) {
 		listaUsuarios.insertarUsuario(new Usuario(nombre, apellido, correo));
