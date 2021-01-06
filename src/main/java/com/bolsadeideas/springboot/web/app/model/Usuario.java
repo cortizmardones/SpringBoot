@@ -1,12 +1,28 @@
 package com.bolsadeideas.springboot.web.app.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class Usuario {
 	
+//	Para crear expresiones regulares personalizadas
+//	@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][a-zA-Z]{1}")
+//	private String identificadorUnico;
+	
+	@NotEmpty(message = "El campo 'Nombre' no debe estar vacío") 
 	private String nombre;
+	
+	@NotEmpty(message = "El campo 'Apellido' no debe estar vacío")
+	@Size(min = 3 , max = 20)
 	private String apellido;
+	
+	@NotEmpty(message = "El campo 'Correo' no debe estar vacío")
+	@Email
 	private String correo;
 	
 	public Usuario() {
@@ -14,7 +30,6 @@ public class Usuario {
 	}
 	
 	public Usuario(String nombre, String apellido, String correo) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
@@ -48,6 +63,5 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + "]";
 	}
-	
 	
 }
