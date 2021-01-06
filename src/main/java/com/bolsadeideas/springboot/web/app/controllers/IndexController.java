@@ -242,7 +242,8 @@ public class IndexController {
 	@RequestMapping("/agregar")
 	public String agregar(@Valid Usuario usuario, BindingResult result, Model model , SessionStatus status) throws ParseException {
 		
-		validador.validate(usuario, result);
+		//El status era para cuando tenemos un archivo null como los autoincrementables en una BDD
+		status.setComplete();
 		
 		if (result.hasErrors()) {
 			model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
@@ -252,8 +253,7 @@ public class IndexController {
 		listaUsuarios.insertarUsuario(usuario);
 		model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
 		
-		//El status era para cuando tenemos un archivo null como los autoincrementables en una BDD
-		status.setComplete();
+		validador.validate(usuario, result);
 		return "usuarios";
 	}
 	
