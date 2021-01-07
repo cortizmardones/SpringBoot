@@ -7,11 +7,15 @@ import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
+import com.bolsadeideas.springboot.web.app.validation.IdentificadorRegex;
+
 @Component
 public class Usuario {
 	
 //	Para crear expresiones regulares personalizadas
 //	@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][a-zA-Z]{1}")
+//	Este identificador lo cree para generar mensajes personalizados y validaciones más complejas.
+//	@IdentificadorRegex
 //	private String identificadorUnico;
 	
 	@NotEmpty(message = "El campo 'Nombre' no debe estar vacío") 
@@ -21,6 +25,7 @@ public class Usuario {
 	@Size(min = 3 , max = 20)
 	private String apellido;
 	
+	//NotBlank (También existe este campo que valida si algo esta vacio)
 	@NotEmpty(message = "El campo 'Correo' no debe estar vacío")
 	@Email
 	private String correo;

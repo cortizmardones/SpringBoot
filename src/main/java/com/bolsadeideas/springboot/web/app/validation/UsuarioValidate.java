@@ -28,7 +28,7 @@ public class UsuarioValidate implements Validator {
 
 //	Esta parte es por si quisiera realizar una validación personalizada para atributos de una clase.
 //		Usuario usuario = (Usuario)target;
-//		if(!usuario.getIdentificador().matches("ACÁ VA LA EXPRESIÓN REGULAR")) {
+//		if(!usuario.getIdentificador().matches("[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][a-zA-Z]{1}")) {
 //			errors.rejectValue("identificador", "Pattern.usuario.identificador");
 //		}
 

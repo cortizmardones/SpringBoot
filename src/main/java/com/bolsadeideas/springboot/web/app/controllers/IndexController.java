@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -229,6 +231,12 @@ public class IndexController {
 	@Autowired
 	private UsuarioValidate validador;
 	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.setValidator(validador);
+		//binder.addValidators(validador);
+	}
+	
 	// Controlador con datos desde el modelo
 	@RequestMapping("/usuarios")
 	public String usuarios(Usuario usuario , Model model) {
@@ -253,7 +261,8 @@ public class IndexController {
 		listaUsuarios.insertarUsuario(usuario);
 		model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
 		
-		validador.validate(usuario, result);
+		//Comento esta linea porque cree el metodo initBinder
+		//validador.validate(usuario, result);
 		return "usuarios";
 	}
 	
