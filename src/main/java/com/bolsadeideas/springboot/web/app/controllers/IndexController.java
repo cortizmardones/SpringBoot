@@ -28,6 +28,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.bolsadeideas.springboot.web.app.model.IInyeccion;
 import com.bolsadeideas.springboot.web.app.model.ListaUsuario;
+import com.bolsadeideas.springboot.web.app.model.Loggin;
 import com.bolsadeideas.springboot.web.app.model.Usuario;
 import com.bolsadeideas.springboot.web.app.validation.UsuarioValidate;
 
@@ -51,7 +52,7 @@ public class IndexController {
 	// Cada vez que se llame a la ruta / se va a ejecutar el metodo de abajo - de tipo GET
 	@RequestMapping("/")
 	public String index() {
-		return "index";
+		return "loggin";
 	}
 
 	// Controlador con datos desde el modelo (Creando un objeto desde el modelo)
@@ -215,10 +216,7 @@ public class IndexController {
 		return "hola mundo";
 	}
 	
-	
-	
-	
-	
+
 	
 	
 	
@@ -236,6 +234,21 @@ public class IndexController {
 		binder.setValidator(validador);
 		//binder.addValidators(validador);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// Controlador con datos desde el modelo
 	@RequestMapping("/usuarios")
@@ -266,8 +279,26 @@ public class IndexController {
 		return "usuarios";
 	}
 	
+	@RequestMapping("/loggin")
+	public String loggin(Loggin loggin , Model model) {
+		model.addAttribute("loggin",loggin);
+		return "usuarios";
+	}
 	
-	//Prueba comentario
+	@RequestMapping("/procesarLoggin")
+	public String procesarLoggin(@Valid Loggin loggin , BindingResult result , Model model) {
+		
+		if(loggin.validarUsuario(loggin.getMail(),loggin.getPassword())) {
+			//Acá derivo si paso la validación
+			return "index";
+		} else {
+			//Esta respuesta es solo si falla la validación
+			return "loggin";
+		}
+	}
+	
+	
+	
 	
 	
 	

@@ -21,10 +21,10 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		//Por si quiero ver que ruta estoy invocando
-		if(handler instanceof HandlerMethod) {
-			HandlerMethod metodo = (HandlerMethod) handler;
-			logger.info("Se llamo a la ruta: " + metodo.getMethod().getName());
-		}
+//		if(handler instanceof HandlerMethod) {
+//			HandlerMethod metodo = (HandlerMethod) handler;
+//			logger.info("Se llamo a la ruta: " + metodo.getMethod().getName());
+//		}
 		
 		logger.info("Tiempo Transcurrido Interceptor: preHandle() entrando ... ");
 		long tiempoInicio = System.currentTimeMillis();
@@ -32,11 +32,16 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor{
 		request.setAttribute("tiempoInicio", tiempoInicio);
 		
 		//Simulación de delay (DEMORA PROGRAMADA)
-		Random random = new Random();
-		Integer demora = random.nextInt(500);
-		Thread.sleep(demora);
+//		Random random = new Random();
+//		Integer demora = random.nextInt(500);
+//		Thread.sleep(demora);
 		
 		return true;
+		
+		
+		//Ejemplo si no pasamos la validacion y no queremos que el usuario siga navegando y redirigirlo a una ruta especifica
+//		response.sendRedirect(request.getContextPath().concat("/login"));
+//		return false;
 	}
 
 	@Override
