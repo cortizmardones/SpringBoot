@@ -25,4 +25,25 @@ public class ClienteDaoImplements implements IClienteDao {
 		return em.createQuery("from Cliente").getResultList();
 	}
 
+	@Override
+	@Transactional
+	public void save(Cliente cliente) {
+		em.persist(cliente);
+	}
+
+	@Override
+	public void find(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	//Hay otros metodos merge(actualizar) y remove (eliminar)
+
 }

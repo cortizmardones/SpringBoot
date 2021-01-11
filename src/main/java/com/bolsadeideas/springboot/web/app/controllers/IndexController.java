@@ -28,6 +28,7 @@ import com.bolsadeideas.springboot.web.app.model.ListaUsuario;
 import com.bolsadeideas.springboot.web.app.model.Loggin;
 import com.bolsadeideas.springboot.web.app.model.Usuario;
 import com.bolsadeideas.springboot.web.app.model.dao.IClienteDao;
+import com.bolsadeideas.springboot.web.app.model.entity.Cliente;
 import com.bolsadeideas.springboot.web.app.validation.UsuarioValidate;
 
 @Controller
@@ -94,6 +95,9 @@ public class IndexController {
 	
 	
 	
+	
+	
+	
 	// ################## INICIO METODOS MUERTOS ##################
 	
 	// Metodo para agregar por path relativos.
@@ -147,6 +151,8 @@ public class IndexController {
 //		return "usuarios";
 //	}
 	// ################## INICIO METODOS MUERTOS ##################
+	
+	
 	
 	
 	
@@ -337,6 +343,13 @@ public class IndexController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	// ################## INICIO JPA ##################
 	
 	@Autowired
@@ -347,6 +360,15 @@ public class IndexController {
 		//Traigo los datos de la bdd
 		model.addAttribute("listaUsuariosBD", IclienteDao.findAll());
 		//Retorno la vista con la lista de usuarios.
+		return "/listaUsuariosBD";
+	}
+	
+	@RequestMapping("/guardarUsuario")
+	public String guardarUsuario(Cliente cliente , Model model) {
+		//Guardo al nuevo usuario
+		IclienteDao.save(cliente);
+		//Consulto por los usuarios en la bdd y los retorno a la vista (acá ya deberia estar agregado el nuevo usuario anterior)
+		model.addAttribute("listaUsuariosBD", IclienteDao.findAll());
 		return "/listaUsuariosBD";
 	}
 	
