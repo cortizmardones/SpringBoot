@@ -13,10 +13,23 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Autowired
 	@Qualifier("TiempoTranscurridoInterceptor")
 	private HandlerInterceptor tiempoTranscurridoInterceptor;
+	
+	@Autowired
+	@Qualifier("horario")
+	private HandlerInterceptor horario;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(tiempoTranscurridoInterceptor); //.addPathPatterns("/rutas","/rutas");
+		
+		
+		//OJO IMPORANTE:
+		//SI NO ESPECIFICO A QUE RUTA VA AFECTAR ESTE INTERCEPTOR SE VA A APLICAR A TODOS LOS METODOS DEL CONTROLADOR
+		
+		//registry.addInterceptor(tiempoTranscurridoInterceptor); //.addPathPatterns("/rutas","/rutas");
+		
+		
+		//En esta parte excluyo estas 2 rutas para evitar que se forme un loop infinito de redirecciones.
+		registry.addInterceptor(horario).excludePathPatterns("/app/fueraDeHorario","/app/loggin");
 	}
 	
 }

@@ -27,6 +27,7 @@ import com.bolsadeideas.springboot.web.app.model.IInyeccion;
 import com.bolsadeideas.springboot.web.app.model.ListaUsuario;
 import com.bolsadeideas.springboot.web.app.model.Loggin;
 import com.bolsadeideas.springboot.web.app.model.Usuario;
+import com.bolsadeideas.springboot.web.app.model.dao.IClienteDao;
 import com.bolsadeideas.springboot.web.app.validation.UsuarioValidate;
 
 @Controller
@@ -90,6 +91,62 @@ public class IndexController {
 
 	// ################## FIN MODEL ATRIBUTTES ##################
 	
+	
+	
+	
+	// ################## INICIO METODOS MUERTOS ##################
+	
+	// Metodo para agregar por path relativos.
+//	@RequestMapping("/agregar/{nombre}/{apellido}/{correo}")
+//	public String path(@PathVariable String nombre ,@PathVariable String apellido ,@PathVariable String correo , Model model) {
+//		
+//		listaUsuarios.insertarUsuario(new Usuario(nombre, apellido, correo));
+//		model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
+//		return "usuarios";
+//	}
+
+// En este metodo lo importante es el atributo NAME desde el HTML5 (Ese es el
+// que hace que lleguen los valores al controlador)
+//	@RequestMapping("/agregar")
+//	public String agregar(@RequestParam(name="nombre") String nombre, @RequestParam(name="apellido") String apellido , @RequestParam(name="correo") String correo , Model model) {
+//		listaUsuarios.insertarUsuario(new Usuario(nombre, apellido, correo));
+//		model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
+//		return "usuarios";
+//	}
+
+// Este metodo funciona igual que el de arriba pero con la inyección del usuario
+// directo (evito la palabra new) siempre y cuando los name del HTML se llamen
+// igual a los atributos de la clase Usuario
+// Agregando el th:object en el formulario ya no necesito el name y el th:value
+// en el formulario porque el formulario se asocio al objeto usuario con el tag
+// th:object="${usuario}
+//	@RequestMapping("/agregar")
+//	public String agregar(@Valid Usuario usuario, BindingResult result, Model model , SessionStatus status) throws ParseException {
+//
+//		if (result.hasErrors()) {
+//			
+//			//Si implemento estas logicas tengo que cambiar las lineas comentadas en el html de la vista.
+////			Map<String, String> errores = new HashMap<>();
+//			// Forma más corta de recorrer los errores.
+////			result.getFieldErrors().forEach(err->{
+////			errores.put(err.getField(),"El campo ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
+////			});
+//			//Forma tradicional de recorrer los errores.
+////			for (int i = 0; result.getFieldErrors().size() > i; i++) {
+////				errores.put(result.getFieldErrors().get(i).getField(),"El campo ".concat(result.getFieldErrors().get(i).getField()).concat(" ").concat(result.getFieldErrors().get(i).getDefaultMessage()));
+////			}
+////			model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
+////			model.addAttribute("errores",errores);
+//			model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
+//			return "usuarios";
+//		}
+//
+//		listaUsuarios.insertarUsuario(usuario);
+//		model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
+//		status.setComplete();
+//		return "usuarios";
+//	}
+	// ################## INICIO METODOS MUERTOS ##################
 	
 	
 	
@@ -178,57 +235,6 @@ public class IndexController {
 		return "usuarios";
 	}
 
-	// Metodo para agregar por path relativos.
-//		@RequestMapping("/agregar/{nombre}/{apellido}/{correo}")
-//		public String path(@PathVariable String nombre ,@PathVariable String apellido ,@PathVariable String correo , Model model) {
-//			
-//			listaUsuarios.insertarUsuario(new Usuario(nombre, apellido, correo));
-//			model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
-//			return "usuarios";
-//		}
-
-	// En este metodo lo importante es el atributo NAME desde el HTML5 (Ese es el
-	// que hace que lleguen los valores al controlador)
-//		@RequestMapping("/agregar")
-//		public String agregar(@RequestParam(name="nombre") String nombre, @RequestParam(name="apellido") String apellido , @RequestParam(name="correo") String correo , Model model) {
-//			listaUsuarios.insertarUsuario(new Usuario(nombre, apellido, correo));
-//			model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
-//			return "usuarios";
-//		}
-
-	// Este metodo funciona igual que el de arriba pero con la inyección del usuario
-	// directo (evito la palabra new) siempre y cuando los name del HTML se llamen
-	// igual a los atributos de la clase Usuario
-	// Agregando el th:object en el formulario ya no necesito el name y el th:value
-	// en el formulario porque el formulario se asocio al objeto usuario con el tag
-	// th:object="${usuario}
-//		@RequestMapping("/agregar")
-//		public String agregar(@Valid Usuario usuario, BindingResult result, Model model , SessionStatus status) throws ParseException {
-	//
-//			if (result.hasErrors()) {
-//				
-//				//Si implemento estas logicas tengo que cambiar las lineas comentadas en el html de la vista.
-////				Map<String, String> errores = new HashMap<>();
-//				// Forma más corta de recorrer los errores.
-////				result.getFieldErrors().forEach(err->{
-////				errores.put(err.getField(),"El campo ".concat(err.getField()).concat(" ").concat(err.getDefaultMessage()));
-////				});
-//				//Forma tradicional de recorrer los errores.
-////				for (int i = 0; result.getFieldErrors().size() > i; i++) {
-////					errores.put(result.getFieldErrors().get(i).getField(),"El campo ".concat(result.getFieldErrors().get(i).getField()).concat(" ").concat(result.getFieldErrors().get(i).getDefaultMessage()));
-////				}
-////				model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
-////				model.addAttribute("errores",errores);
-//				model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
-//				return "usuarios";
-//			}
-	//
-//			listaUsuarios.insertarUsuario(usuario);
-//			model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
-//			status.setComplete();
-//			return "usuarios";
-//		}
-
 	// Redirecciones con redirect (Recarga la página y pierdo las propiedades http)
 	// En este caso me redirige la ruta /otraForma desde el inicio del proyecto al
 	// listado de usuarios.
@@ -313,13 +319,36 @@ public class IndexController {
 	public String procesarLoggin(@Valid Loggin loggin, BindingResult result, Model model) {
 
 		if (loggin.validarUsuario(loggin.getMail(), loggin.getPassword())) {
+			model.addAttribute("index", "indice");
 			return "index";
 		} else {
 			model.addAttribute("errorCredenciales", "Credenciales incorrectas");
 			return "loggin";
 		}
 	}
+	
+	@RequestMapping("/fueraDeHorario")
+	public String fueraDeHorario(Model model) {
+		model.addAttribute("fueraDeHorario", "Usuario conectado fuera de horario");
+		return "fueraDeHorario";
+	}
 
 	// ################## FIN METODOS NORMALES ##################
+	
+	
+	
+	// ################## JPA ##################
+	
+	@Autowired
+	private IClienteDao IclienteDao;
+	
+	@RequestMapping("/listaUsuariosBD")
+	public String listarUsuarios(Model model) {
+		//Traigo los datos de la bdd
+		model.addAttribute("listaUsuariosBD", IclienteDao.findAll());
+		//Retorno la vista con la lista de usuarios.
+		return "/listaUsuariosBD";
+	}
+	
 
 }
