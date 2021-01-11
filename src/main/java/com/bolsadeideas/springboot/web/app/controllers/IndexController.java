@@ -104,8 +104,14 @@ public class IndexController {
 	// tipo GET
 	@RequestMapping("/")
 	public String index(Loggin loggin , Model model) {
-		model.addAttribute("titulo", "Loggin");
+		model.addAttribute("titulo", "Loggin de usuario");
 		return "loggin";
+	}
+	
+	@RequestMapping("/index")
+	public String indice(Model model) {
+		model.addAttribute("index", "Indice");
+		return "index";
 	}
 
 	// Controlador con datos desde el modelo (Creando un objeto desde el modelo)
@@ -299,7 +305,7 @@ public class IndexController {
 
 	@RequestMapping("/loggin")
 	public String loggin(Loggin loggin, Model model) {
-		model.addAttribute("titulo", "Loggin");
+		model.addAttribute("titulo", "Loggin de usuario");
 		return "loggin";
 	}
 
@@ -307,10 +313,9 @@ public class IndexController {
 	public String procesarLoggin(@Valid Loggin loggin, BindingResult result, Model model) {
 
 		if (loggin.validarUsuario(loggin.getMail(), loggin.getPassword())) {
-			// Acá derivo si paso la validación
 			return "index";
 		} else {
-			// Esta respuesta es solo si falla la validación
+			model.addAttribute("errorCredenciales", "Credenciales incorrectas");
 			return "loggin";
 		}
 	}

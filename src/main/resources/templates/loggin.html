@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Loggin de usuario</title>
+	<title th:text="${titulo}"></title>
 	<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
 	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
@@ -13,6 +13,8 @@
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
+			
+			
 			
 			<form th:action="@{/app/procesarLoggin}" th:object="${loggin}" method="post">
 				<br><br><br><br><br><br><br><br>
@@ -27,6 +29,9 @@
 				<button class="btn btn-success form-control"><i class="fas fa-door-open"></i> Ingresar</button>
 				<br><br><hr>
 			</form>
+			
+			
+			<div th:if="${errorCredenciales}" class="alert alert-danger text-center"><i class="fas fa-times"></i> Credenciales incorrectas</div>
 				
 			</div>
 			<div class="col-md-3"></div>
