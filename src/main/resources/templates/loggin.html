@@ -19,10 +19,10 @@
 				<h3 class="text-center"><i class="fas fa-key"></i> Ingrese sus credenciales:</h3>
 				<hr><br>
 				<label><i class="far fa-envelope-open"></i> Correo Electrónico</label><br>
-				<input type="text" class="form-control" placeholder="Escriba su correo acá" th:field="*{mail}">
+				<input type="text" class="form-control" placeholder="Escriba su correo acá" th:field="*{mail}" required>
 				<br>
 				<label><i class="fas fa-unlock-alt"></i> Password</label><br>
-				<input type="password" class="form-control" placeholder="Escriba su contraseña acá" th:field="*{password}">
+				<input type="password" class="form-control" placeholder="Escriba su contraseña acá" th:field="*{password}" required>
 				<br>
 				<button class="btn btn-success form-control"><i class="fas fa-door-open"></i> Ingresar</button>
 				<br><br><hr>

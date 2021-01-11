@@ -13,7 +13,6 @@ public class Loggin {
 	}
 		
 	public Loggin(String mail, String password) {
-		super();
 		this.mail = mail;
 		this.password = password;
 	}
