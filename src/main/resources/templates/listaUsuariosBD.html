@@ -27,10 +27,9 @@ content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col"><i class="far fa-address-card"></i> ID</th>
 							<th scope="col"><i class="far fa-address-card"></i> Nombre</th>
-							<th scope="col"><i class="fas fa-at"></i> Apellido</th>
-							<th scope="col"><i class="fas fa-align-center"></i> Correo</th>
+							<th scope="col"><i class="far fa-address-card"></i> Apellido</th>
+							<th scope="col"><i class="fas fa-at"></i> Correo</th>
 							<th scope="col"><i class="fas fa-align-center"></i> Fecha</th>
 						</tr>
 					</thead>
@@ -39,15 +38,15 @@ content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 							<td th:text="${iStat.count}"></td>
 							<td th:text="${p.nombre}"></td>
 							<td th:text="${p.apellido}"></td>
-							<td th:text="${p.correo}"></td>
-							<td th:text="${p.fecha}"></td>
+							<td th:text="${p.email}"></td>
+							<td th:text="${p.createAt}"></td>
 						</tr>
 					</tbody>
 				</table>
 				
 				
 				<hr>
-				<a th:href="@{/app/loggin}">Cerrar sesión</a>
+				<a th:href="@{/app/index}">Volver</a>
 				
 			</div>
 			<div class="col-md-3"></div>

@@ -2,6 +2,8 @@ package com.bolsadeideas.springboot.web.app.model.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +13,7 @@ import com.bolsadeideas.springboot.web.app.model.entity.Cliente;
 @Repository
 public class ClienteDaoImplements implements IClienteDao {
 
+	@PersistenceContext
 	private EntityManager em;
 	
 	//Anotacion para definir la query solo lectura (Para los select)

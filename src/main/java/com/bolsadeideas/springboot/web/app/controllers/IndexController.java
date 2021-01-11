@@ -337,7 +337,7 @@ public class IndexController {
 	
 	
 	
-	// ################## JPA ##################
+	// ################## INICIO JPA ##################
 	
 	@Autowired
 	private IClienteDao IclienteDao;
@@ -349,6 +349,8 @@ public class IndexController {
 		//Retorno la vista con la lista de usuarios.
 		return "/listaUsuariosBD";
 	}
+	
+	// ################## FIN JPA ##################
 	
 
 }
