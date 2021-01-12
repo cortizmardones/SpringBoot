@@ -18,7 +18,8 @@ public class ComunaDaoImplements implements IComunaDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Comuna> findAll() {
-		return em.createQuery("from Comuna").getResultList();
+		//Consulta en la tabla comunas ordenados por nombre
+		return em.createQuery("from Comuna order by nombre asc").getResultList();
 	}
 
 }

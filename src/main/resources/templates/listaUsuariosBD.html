@@ -48,8 +48,7 @@
 					<br>
 					<label><i class="fas fa-city"></i> Comuna: </label>
 					<select name="select" class="form-control">
-						<option th:each="p , iStat :  ${listadoComunasBD}" th:value="${p.id}" th:text="${p.nombre}" th:selected="false"></option>
-						<!-- <option th:each="Item : ${departamentosSelect}" 	th:value="${Item.nombre}"  			th:text="${Item.nombre}" th:selected="false"/> -->
+						<option th:each="p :  ${listadoComunasBD}" th:value="${p.id}" th:text="${p.nombre}" th:selected="false"></option>
 					</select>
 					<br>
 					<button class="form-control btn btn-success">Agregar usuario</button>
@@ -78,7 +77,7 @@
 							<td th:text="${p.apellido}"></td>
 							<td th:text="${p.email}"></td>
 							<td th:text="${p.createAt}"></td>
-							<td th:text="${p.comuna}"></td>
+							<td th:text="${p.comuna.nombre}"></td>
 						</tr>
 					</tbody>
 				</table>

@@ -372,17 +372,10 @@ public class IndexController {
 	@RequestMapping("/agregarUsuarioBD")
 	public String agregarUsuarioBD(Cliente cliente , Model model) {
 		IclienteDao.save(cliente);
-		model.addAttribute("titulo","lista de usuarios");
 		//Agrego la redirección despues de agregar el usuario a la BDD para no tener que volver a generar la logica de listar los usuarios (Reutilizar metodo listar)
 		return "redirect:/app/listaUsuariosBD";
 	}
-	
-//	@ModelAttribute()
-//	public List<String> listarComunas(Model model) {
-//		model.addAttribute("listadoComunasBD",IcomunaDao.findAll());
-//		return listaFormulario;
-//	}
-	
+		
 	// ################## FIN JPA ##################
 	
 

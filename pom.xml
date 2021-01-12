@@ -61,10 +61,14 @@
 		</dependency>
 
 		<!-- Base de datos H2 en memoria - solo para desarrollo -->
+		<!-- <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId> 
+			<scope>runtime</scope> </dependency> -->
+		
+		<!-- Mysql -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.18</version>
 		</dependency>
 
 	</dependencies>

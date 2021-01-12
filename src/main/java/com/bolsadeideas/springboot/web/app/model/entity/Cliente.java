@@ -2,7 +2,6 @@ package com.bolsadeideas.springboot.web.app.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,8 +36,7 @@ public class Cliente implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private String createAt;
 	
-	
-	private String comuna;
+	private Comuna comuna;
 
 	public Long getId() {
 		return id;
@@ -80,11 +78,11 @@ public class Cliente implements Serializable {
 		this.createAt = createAt;
 	}
 	
-	public String getComuna() {
+	public Comuna getComuna() {
 		return comuna;
 	}
 
-	public void setComuna(String comuna) {
+	public void setComuna(Comuna comuna) {
 		this.comuna = comuna;
 	}
 
