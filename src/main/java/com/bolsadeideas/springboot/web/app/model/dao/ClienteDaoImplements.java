@@ -22,6 +22,8 @@ public class ClienteDaoImplements implements IClienteDao {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Cliente> findAll() {
+		
+		//El nombre siempre tiene que ser el de la clase y siempre con la primera letra en mayuscula o arrojara errores. (IMPORTANTE)
 		return em.createQuery("from Cliente").getResultList();
 	}
 

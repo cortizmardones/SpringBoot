@@ -20,23 +20,26 @@ public class Cliente implements Serializable {
 
 	// Este anotación indica que sera la llave primaria
 	@Id
-	// Esta anotación es para la programación de las secuencias , si son
-	// autoincrementales , etc
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// Esta anotación es para la programación de las secuencias , si son autoincrementales , etc
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
+	
 	private String nombre;
 	private String apellido;
 	private String email;
 
 	// Esta anotación es para cambiar el nombre del campo en la tabla.
 	@Column(name = "create_at")
+	
 	// Esta anotación establece el tipo de dato fecha
 //	@Temporal(TemporalType.DATE)
 //	//Formato a la fecha
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private String createAt;
 	
-	private Comuna comuna;
+	// Esta anotación es para cambiar el nombre del campo en la tabla.
+	@Column(name = "id_comuna")
+	private int comuna;
 
 	public Long getId() {
 		return id;
@@ -78,11 +81,11 @@ public class Cliente implements Serializable {
 		this.createAt = createAt;
 	}
 	
-	public Comuna getComuna() {
+	public int getComuna() {
 		return comuna;
 	}
 
-	public void setComuna(Comuna comuna) {
+	public void setComuna(int comuna) {
 		this.comuna = comuna;
 	}
 

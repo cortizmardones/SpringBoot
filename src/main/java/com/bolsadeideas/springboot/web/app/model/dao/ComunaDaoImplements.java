@@ -18,6 +18,8 @@ public class ComunaDaoImplements implements IComunaDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Comuna> findAll() {
+		
+		//El nombre siempre tiene que ser el de la clase y siempre con la primera letra en mayuscula o arrojara errores. (IMPORTANTE)
 		//Consulta en la tabla comunas ordenados por nombre
 		return em.createQuery("from Comuna order by nombre asc").getResultList();
 	}
