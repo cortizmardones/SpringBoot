@@ -21,6 +21,10 @@ public class Cliente implements Serializable {
 	// Este anotación indica que sera la llave primaria
 	@Id
 	// Esta anotación es para la programación de las secuencias , si son autoincrementales , etc
+	/*Para que funcionar la clausula IDENTITY tuve que crear la restricción en la bdd primero.
+	 * 	ALTER TABLE `db_springboot`.`clientes` 
+		CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
+	 * */
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
 	
