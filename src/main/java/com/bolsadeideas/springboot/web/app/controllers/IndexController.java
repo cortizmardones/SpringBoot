@@ -28,6 +28,7 @@ import com.bolsadeideas.springboot.web.app.model.ListaUsuario;
 import com.bolsadeideas.springboot.web.app.model.Loggin;
 import com.bolsadeideas.springboot.web.app.model.Usuario;
 import com.bolsadeideas.springboot.web.app.model.dao.IClienteDao;
+import com.bolsadeideas.springboot.web.app.model.dao.IComunaDao;
 import com.bolsadeideas.springboot.web.app.model.entity.Cliente;
 import com.bolsadeideas.springboot.web.app.validation.UsuarioValidate;
 
@@ -355,11 +356,15 @@ public class IndexController {
 	@Autowired
 	private IClienteDao IclienteDao;
 	
+	@Autowired
+	private IComunaDao IcomunaDao; 
+	
 	@RequestMapping("/listaUsuariosBD")
 	public String listarUsuarios(Model model , Cliente cliente) {
 		//Traigo los datos de la bdd
 		model.addAttribute("titulo", "Lista de usuarios");
 		model.addAttribute("listaUsuariosBD", IclienteDao.findAll());
+		model.addAttribute("listadoComunasBD",IcomunaDao.findAll());
 		//Retorno la vista con la lista de usuarios.
 		return "/listaUsuariosBD";
 	}
@@ -371,6 +376,12 @@ public class IndexController {
 		//Agrego la redirección despues de agregar el usuario a la BDD para no tener que volver a generar la logica de listar los usuarios (Reutilizar metodo listar)
 		return "redirect:/app/listaUsuariosBD";
 	}
+	
+//	@ModelAttribute()
+//	public List<String> listarComunas(Model model) {
+//		model.addAttribute("listadoComunasBD",IcomunaDao.findAll());
+//		return listaFormulario;
+//	}
 	
 	// ################## FIN JPA ##################
 	

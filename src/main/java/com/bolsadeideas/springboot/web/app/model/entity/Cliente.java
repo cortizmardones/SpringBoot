@@ -36,6 +36,9 @@ public class Cliente implements Serializable {
 //	//Formato a la fecha
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private String createAt;
+	
+	
+	private String comuna;
 
 	public Long getId() {
 		return id;
@@ -75,6 +78,14 @@ public class Cliente implements Serializable {
 
 	public void setCreateAt(String createAt) {
 		this.createAt = createAt;
+	}
+	
+	public String getComuna() {
+		return comuna;
+	}
+
+	public void setComuna(String comuna) {
+		this.comuna = comuna;
 	}
 
 	public static long getSerialversionuid() {
