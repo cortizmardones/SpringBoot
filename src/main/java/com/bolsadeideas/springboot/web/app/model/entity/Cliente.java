@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 //la anotación table es para darle otro nombre a la tabla - si no esta por default se llamara igual que la clase
 @Table(name = "clientes")
@@ -30,8 +32,10 @@ public class Cliente implements Serializable {
 	// Esta anotación es para cambiar el nombre del campo en la tabla.
 	@Column(name = "create_at")
 	// Esta anotación establece el tipo de dato fecha
-	@Temporal(TemporalType.DATE)
-	private Date createAt;
+//	@Temporal(TemporalType.DATE)
+//	//Formato a la fecha
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private String createAt;
 
 	public Long getId() {
 		return id;
@@ -65,11 +69,11 @@ public class Cliente implements Serializable {
 		this.email = email;
 	}
 
-	public Date getCreateAt() {
+	public String getCreateAt() {
 		return createAt;
 	}
 
-	public void setCreateAt(Date createAt) {
+	public void setCreateAt(String createAt) {
 		this.createAt = createAt;
 	}
 

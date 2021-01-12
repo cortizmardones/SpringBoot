@@ -2,8 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title th:text="${index}"></title>
@@ -11,18 +10,50 @@ content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 <body>
-	
+
 	<!-- Acá estoy reutilizando un componente de HTML creado en otra parte (Parecido a componentes de ANGULAR) -->
 	<div th:replace="componentes/header :: componenteHeader"></div>
 
 	<div class="container">
-		<br><br><br><br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<h3 class="text-center"><i class="fas fa-address-book"></i> Rutas en Spring </h3>
-				<br><hr>
+				<h3 class="text-center"><i class="fas fa-address-book"></i> Formulario de clientes:</h3>
 
+				<hr>
+
+				<form th:action="@{/app/agregarUsuarioBD}" th:object="${cliente}"
+					method="post">
+
+					<br> 
+					<label><i class="fas fa-address-book"></i> Nombre: </label> 
+					<br> 
+					<input type="text" class="form-control" th:field="*{nombre}" placeholder="Ingrese su nombre acá" required> 
+					<br> 
+					<label><i class="fas fa-address-book"></i> Apellido: </label> 
+					<br> 
+					<input type="text" class="form-control" th:field="*{apellido}" placeholder="Ingrese su apellido acá" required> 
+					<br> 
+					<label><i class="far fa-envelope"></i> Correo: </label> 
+					<br> 
+					<input type="email" class="form-control" th:field="*{email}" placeholder="Ingrese su correo acá" required> 
+					<br> 
+					<label><i class="fas fa-table"></i> Fecha de nacimiento: </label> 
+					<br> 
+					<input type="date" class="form-control" th:field="*{createAt}" placeholder="Ingrese su fecha de nacimiento acá" required>
+					<br>
+					<button class="form-control btn btn-success">Agregar usuario</button>
+				</form>
+
+				<hr><br><br>
+				
+				<h3 class="text-center"><i class="fas fa-address-book"></i> Lista de usuarios: </h3>
+				<br>
+				
 				<table class="table" th:if="${listaUsuariosBD.size() > 0}">
 					<thead class="thead-dark">
 						<tr>
@@ -43,16 +74,17 @@ content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 						</tr>
 					</tbody>
 				</table>
-				
-				
+
 				<hr>
+
 				<a th:href="@{/app/index}">Volver</a>
-				
+				<br><br><br>
+
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 	</div>
 
-<script th:src="@{/js/bootstrap.js}"></script>
+	<script th:src="@{/js/bootstrap.js}"></script>
 </body>
 </html>

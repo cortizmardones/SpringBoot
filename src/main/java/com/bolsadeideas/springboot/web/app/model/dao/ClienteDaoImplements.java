@@ -32,18 +32,20 @@ public class ClienteDaoImplements implements IClienteDao {
 	}
 
 	@Override
-	public void find(Long id) {
-		// TODO Auto-generated method stub
+	@Transactional
+	public void edit(Long id) {
+		//merge(actualizar)
 		
 	}
 
 	@Override
+	@Transactional
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		// remove (eliminar)
 		
 	}
 	
 	
-	//Hay otros metodos merge(actualizar) y remove (eliminar)
+	
 
 }

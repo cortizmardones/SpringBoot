@@ -356,20 +356,20 @@ public class IndexController {
 	private IClienteDao IclienteDao;
 	
 	@RequestMapping("/listaUsuariosBD")
-	public String listarUsuarios(Model model) {
+	public String listarUsuarios(Model model , Cliente cliente) {
 		//Traigo los datos de la bdd
+		model.addAttribute("titulo", "Lista de usuarios");
 		model.addAttribute("listaUsuariosBD", IclienteDao.findAll());
 		//Retorno la vista con la lista de usuarios.
 		return "/listaUsuariosBD";
 	}
 	
-	@RequestMapping("/guardarUsuario")
-	public String guardarUsuario(Cliente cliente , Model model) {
-		//Guardo al nuevo usuario
+	@RequestMapping("/agregarUsuarioBD")
+	public String agregarUsuarioBD(Cliente cliente , Model model) {
 		IclienteDao.save(cliente);
-		//Consulto por los usuarios en la bdd y los retorno a la vista (acá ya deberia estar agregado el nuevo usuario anterior)
-		model.addAttribute("listaUsuariosBD", IclienteDao.findAll());
-		return "/listaUsuariosBD";
+		model.addAttribute("titulo","lista de usuarios");
+		//Agrego la redirección despues de agregar el usuario a la BDD para no tener que volver a generar la logica de listar los usuarios (Reutilizar metodo listar)
+		return "redirect:/app/listaUsuariosBD";
 	}
 	
 	// ################## FIN JPA ##################

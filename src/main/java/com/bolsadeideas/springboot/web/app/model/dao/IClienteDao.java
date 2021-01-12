@@ -10,7 +10,7 @@ public interface IClienteDao {
 	
 	public void save(Cliente cliente);
 	
-	public void find(Long id);
+	public void edit(Long id);
 	
 	public void delete(Long id);
 
