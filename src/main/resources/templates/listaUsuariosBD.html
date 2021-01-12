@@ -47,8 +47,8 @@
 					<input type="date" class="form-control" th:field="*{createAt}" placeholder="Ingrese su fecha de nacimiento acá" required>
 					<br>
 					<label><i class="fas fa-city"></i> Comuna: </label>
-					<select name="select" class="form-control">
-						<option th:each="p :  ${listadoComunasBD}" th:value="${p.id}" th:text="${p.nombre}" th:selected="false"></option>
+					<select name="select" class="form-control" th:field="*{comuna}">
+						<option th:each="p :  ${listadoComunasBD}"  th:value="${p.id}" th:text="${p.nombre}" th:selected="false"></option>
 					</select>
 					<br>
 					<button class="form-control btn btn-success">Agregar usuario</button>
