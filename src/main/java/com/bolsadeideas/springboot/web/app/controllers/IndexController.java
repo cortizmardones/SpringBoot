@@ -371,7 +371,15 @@ public class IndexController {
 	
 	@RequestMapping("/agregarUsuarioBD")
 	public String agregarUsuarioBD(Cliente cliente) {
-		IclienteDao.save(cliente);
+		
+		//EL AGREGAR USUARIO Y EDITAR USUARIO REUTILIZAN ESTE MISMO METODO, POR ESO AGREGO LA VALIDACIÓN
+		//Si el id viene nulo significa que recien estoy ingresando un nuevo usuario , si ya viene un id significa que tengo que actualizar el cliente.
+		if(cliente.getId() == null) {
+			IclienteDao.save(cliente);
+		}else {
+			IclienteDao.edit(cliente);
+		}
+		
 		//Agrego la redirección despues de agregar el usuario a la BDD para no tener que volver a generar la logica de listar los usuarios (Reutilizar metodo listar)
 		return "redirect:/app/listaUsuariosBD";
 	}
@@ -386,7 +394,10 @@ public class IndexController {
 	// PATH VARIABLES
 	@RequestMapping("/editarUsuarioJPA/{id}")
 	public String editarUsuarioJPA(@PathVariable Long id , Model model) {
+		//Busco por el id los datos del usuario desde la bdd y me evito pasarlos como parametro todos manualmente
 		model.addAttribute("cliente",IclienteDao.findOne(id));
+		//Traigo las comunas nuevamente para que en el formulario me aparezcan las comunas en el select
+		model.addAttribute("listadoComunasBD",IcomunaDao.findAll());
 		model.addAttribute("titulo","Editar usuario");
 		return "editarUsuariosBD";
 	}
