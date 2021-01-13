@@ -12,7 +12,8 @@ public class Acceso {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private int id;
+	private Long id;
+	
 	private String email;
 	private String pass;
 	
@@ -20,16 +21,16 @@ public class Acceso {
 		
 	}
 	
-	public Acceso(int id , String email , String pass) {
+	public Acceso(Long id , String email , String pass) {
 		this.id= id;
 		this.email=email;
 		this.pass=pass;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getEmail() {

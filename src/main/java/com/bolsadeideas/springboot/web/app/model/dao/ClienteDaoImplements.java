@@ -36,7 +36,10 @@ public class ClienteDaoImplements implements IClienteDao {
 	@Override
 	@Transactional
 	public void edit(Long id) {
-		//merge(actualizar)
+		//Primero busco el cliente en la bdd por el id
+		Cliente cliente = findOne(id);
+		//Luego lo actualizo
+		em.merge(cliente);
 		
 	}
 	
@@ -49,6 +52,7 @@ public class ClienteDaoImplements implements IClienteDao {
 	@Transactional
 	public void delete(Long id) {
 		
+		//Primero encuentro el cliente por id y luego lo elimino
 		Cliente cliente = findOne(id);
 		em.remove(cliente);
 	}

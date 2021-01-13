@@ -36,7 +36,7 @@ import com.bolsadeideas.springboot.web.app.validation.UsuarioValidate;
 
 @Controller
 @RequestMapping("/app")
-@SessionAttributes("usuario")
+//@SessionAttributes("usuario")
 public class IndexController {
 
 	// ################## INICIO ATRIBUTOS ##################
@@ -168,11 +168,7 @@ public class IndexController {
 
 	// Cada vez que se llame a la ruta / se va a ejecutar el metodo de abajo - de
 	// tipo GET
-	@RequestMapping("/")
-	public String index(Loggin loggin , Model model) {
-		model.addAttribute("titulo", "Loggin de usuario");
-		return "loggin";
-	}
+
 	
 	@RequestMapping("/index")
 	public String indice(Model model) {
@@ -311,10 +307,6 @@ public class IndexController {
 		return "usuarios";
 	}
 
-
-
-
-	
 	@RequestMapping("/fueraDeHorario")
 	public String fueraDeHorario(Model model) {
 		model.addAttribute("fueraDeHorario", "Usuario conectado fuera de horario");
@@ -341,7 +333,13 @@ public class IndexController {
 	private IClienteDao IclienteDao;
 	
 	@Autowired
-	private IComunaDao IcomunaDao; 
+	private IComunaDao IcomunaDao;
+	
+	//Siempre te presente que el metodo sin rutas por defecto si reenvia a una vista que tenga un databinding , agregale la dependencia desde el entity Acceso acceso - Me tuvo como 30 hora perdiendo tiempo.
+	@RequestMapping("/")
+	public String index(Acceso acceso) {
+		return "loggin";
+	}
 	
 	@RequestMapping("/loggin")
 	public String loggin(Acceso acceso, Model model) {
@@ -351,6 +349,7 @@ public class IndexController {
 	
 	@RequestMapping("/procesarLoggin")
 	public String procesarLoggin(Acceso acceso , Model model) {
+		//En este caso tengo un solo registro en la tabla Accesos , si tuviera más qtendria que realizar un for para recorrer cada registro y comparar con los datos que me ingresan en la vista
 		if (IaccesoDao.findAll().get(0).getEmail().equalsIgnoreCase(acceso.getEmail()) && IaccesoDao.findAll().get(0).getPass().equalsIgnoreCase(acceso.getPass())) {
 			model.addAttribute("index", "indice");
 			return "index";
@@ -382,6 +381,14 @@ public class IndexController {
 	public String eliminarUsuarioJPA(@PathVariable Long id) {
 		IclienteDao.delete(id);
 		return "redirect:/app/listaUsuariosBD";
+	}
+	
+	// PATH VARIABLES
+	@RequestMapping("/editarUsuarioJPA/{id}")
+	public String editarUsuarioJPA(@PathVariable Long id , Model model) {
+		model.addAttribute("cliente",IclienteDao.findOne(id));
+		model.addAttribute("titulo","Editar usuario");
+		return "editarUsuariosBD";
 	}
 		
 	// ################## FIN JPA ##################
