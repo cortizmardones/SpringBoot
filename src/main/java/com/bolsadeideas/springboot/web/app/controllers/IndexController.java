@@ -27,8 +27,10 @@ import com.bolsadeideas.springboot.web.app.model.IInyeccion;
 import com.bolsadeideas.springboot.web.app.model.ListaUsuario;
 import com.bolsadeideas.springboot.web.app.model.Loggin;
 import com.bolsadeideas.springboot.web.app.model.Usuario;
+import com.bolsadeideas.springboot.web.app.model.dao.IAccesoDao;
 import com.bolsadeideas.springboot.web.app.model.dao.IClienteDao;
 import com.bolsadeideas.springboot.web.app.model.dao.IComunaDao;
+import com.bolsadeideas.springboot.web.app.model.entity.Acceso;
 import com.bolsadeideas.springboot.web.app.model.entity.Cliente;
 import com.bolsadeideas.springboot.web.app.validation.UsuarioValidate;
 
@@ -196,17 +198,14 @@ public class IndexController {
 	// Rutas con parametros - Se especifica que sea opcional y se le agrega un valor
 	// por defecto.
 	@RequestMapping("/parametro")
-	public String parametro(
-			@RequestParam(name = "parametro", required = false, defaultValue = "Default Value") String parametro,
-			Model model) {
+	public String parametro(@RequestParam(name = "parametro", required = false, defaultValue = "Default Value") String parametro, Model model) {
 		model.addAttribute("parametro", "El parametro enviado es : " + parametro);
 		return "parametro";
 	}
 
 	// Metodo con mas de un parametro.
 	@RequestMapping("/parametroNumerico")
-	public String parametroNumerico(@RequestParam(name = "nombre") String nombre, @RequestParam(name = "edad") int edad,
-			Model model) {
+	public String parametroNumerico(@RequestParam(name = "nombre") String nombre, @RequestParam(name = "edad") int edad, Model model) {
 		model.addAttribute("parametro", "El nombre enviado es : " + nombre + " y su edad es : " + edad);
 		return "parametro";
 	}
@@ -222,9 +221,7 @@ public class IndexController {
 
 	// Metodo con mas de un parametro.
 	@RequestMapping("/eliminar")
-	public String eliminar(Usuario usuario, @RequestParam(name = "nombre") String nombre,
-			@RequestParam(name = "apellido") String apellido, @RequestParam(name = "correo") String correo,
-			Model model) {
+	public String eliminar(Usuario usuario, @RequestParam(name = "nombre") String nombre, @RequestParam(name = "apellido") String apellido, @RequestParam(name = "correo") String correo, Model model) {
 		Usuario usuarioEntrante = new Usuario(nombre, apellido, correo);
 		listaUsuarios.eliminarUsuario(usuarioEntrante);
 		model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
@@ -233,9 +230,7 @@ public class IndexController {
 
 	// PATH VARIABLES
 	@RequestMapping("/eliminarPath/{nombre}/{apellido}/{correo}")
-	public String eliminarPath(Usuario usuario, @PathVariable String nombre, @PathVariable String apellido,
-			@PathVariable String correo, Model model) {
-
+	public String eliminarPath(Usuario usuario, @PathVariable String nombre, @PathVariable String apellido, @PathVariable String correo, Model model) {
 		Usuario usuarioEntrante = new Usuario(nombre, apellido, correo);
 		listaUsuarios.eliminarUsuario(usuarioEntrante);
 		model.addAttribute("listaUsuarios", listaUsuarios.listarUsuario());
@@ -316,23 +311,9 @@ public class IndexController {
 		return "usuarios";
 	}
 
-	@RequestMapping("/loggin")
-	public String loggin(Loggin loggin, Model model) {
-		model.addAttribute("titulo", "Loggin de usuario");
-		return "loggin";
-	}
 
-	@RequestMapping("/procesarLoggin")
-	public String procesarLoggin(@Valid Loggin loggin, BindingResult result, Model model) {
 
-		if (loggin.validarUsuario(loggin.getMail(), loggin.getPassword())) {
-			model.addAttribute("index", "indice");
-			return "index";
-		} else {
-			model.addAttribute("errorCredenciales", "Credenciales incorrectas");
-			return "loggin";
-		}
-	}
+
 	
 	@RequestMapping("/fueraDeHorario")
 	public String fueraDeHorario(Model model) {
@@ -353,11 +334,31 @@ public class IndexController {
 	
 	// ################## INICIO JPA ##################
 	
+	@Autowired 
+	private IAccesoDao IaccesoDao; 
+	
 	@Autowired
 	private IClienteDao IclienteDao;
 	
 	@Autowired
 	private IComunaDao IcomunaDao; 
+	
+	@RequestMapping("/loggin")
+	public String loggin(Acceso acceso, Model model) {
+		model.addAttribute("titulo", "Loggin de usuario");
+		return "loggin";
+	}
+	
+	@RequestMapping("/procesarLoggin")
+	public String procesarLoggin(Acceso acceso , Model model) {
+		if (IaccesoDao.findAll().get(0).getEmail().equalsIgnoreCase(acceso.getEmail()) && IaccesoDao.findAll().get(0).getPass().equalsIgnoreCase(acceso.getPass())) {
+			model.addAttribute("index", "indice");
+			return "index";
+		} else {
+			model.addAttribute("errorCredenciales", "Credenciales incorrectas");
+			return "loggin";
+		}
+	}
 	
 	@RequestMapping("/listaUsuariosBD")
 	public String listarUsuarios(Model model , Cliente cliente) {
@@ -370,9 +371,16 @@ public class IndexController {
 	}
 	
 	@RequestMapping("/agregarUsuarioBD")
-	public String agregarUsuarioBD(Cliente cliente , Model model) {
+	public String agregarUsuarioBD(Cliente cliente) {
 		IclienteDao.save(cliente);
 		//Agrego la redirección despues de agregar el usuario a la BDD para no tener que volver a generar la logica de listar los usuarios (Reutilizar metodo listar)
+		return "redirect:/app/listaUsuariosBD";
+	}
+	
+	// PATH VARIABLES
+	@RequestMapping("/eliminarUsuarioJPA/{id}")
+	public String eliminarUsuarioJPA(@PathVariable Long id) {
+		IclienteDao.delete(id);
 		return "redirect:/app/listaUsuariosBD";
 	}
 		

@@ -16,15 +16,17 @@
 			
 			
 			
-			<form th:action="@{/app/procesarLoggin}" th:object="${loggin}" method="post">
+			<form th:action="@{/app/procesarLoggin}" th:object="${acceso}" method="post">
 				<br><br><br><br><br><br><br><br>
 				<h3 class="text-center"><i class="fas fa-key"></i> Ingrese sus credenciales:</h3>
 				<hr><br>
+				<!-- Ojo que si no coloco todos los campos que vienen desde la clase entity no funciona el databinding , por eso dejo el id oculto -->
+				<input type="hidden" th:field="*{id}">
 				<label><i class="far fa-envelope-open"></i> Correo Electrónico</label><br>
-				<input type="text" class="form-control" placeholder="Escriba su correo acá" th:field="*{mail}" required>
+				<input type="text" class="form-control" placeholder="Escriba su correo acá"  th:field="*{email}" required>
 				<br>
 				<label><i class="fas fa-unlock-alt"></i> Password</label><br>
-				<input type="password" class="form-control" placeholder="Escriba su contraseña acá" th:field="*{password}" required>
+				<input type="password" class="form-control" placeholder="Escriba su contraseña acá" th:field="*{pass}" required>
 				<br>
 				<button class="btn btn-success form-control"><i class="fas fa-door-open"></i> Ingresar</button>
 				<br><br><hr>
