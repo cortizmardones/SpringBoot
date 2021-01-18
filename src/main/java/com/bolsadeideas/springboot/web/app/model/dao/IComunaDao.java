@@ -7,4 +7,6 @@ public interface IComunaDao {
 
 	public List<Comuna> findAll();
 	
+	public Comuna findOne(Long id);
+	
 }

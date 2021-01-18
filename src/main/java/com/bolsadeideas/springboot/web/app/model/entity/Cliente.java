@@ -43,7 +43,7 @@ public class Cliente implements Serializable {
 	
 	// Esta anotación es para cambiar el nombre del campo en la tabla.
 	@Column(name = "id_comuna")
-	private int comuna;
+	private Long comuna;
 
 	public Long getId() {
 		return id;
@@ -85,11 +85,11 @@ public class Cliente implements Serializable {
 		this.createAt = createAt;
 	}
 	
-	public int getComuna() {
+	public Long getComuna() {
 		return comuna;
 	}
 
-	public void setComuna(int comuna) {
+	public void setComuna(Long comuna) {
 		this.comuna = comuna;
 	}
 

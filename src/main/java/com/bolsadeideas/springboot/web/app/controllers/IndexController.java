@@ -336,7 +336,8 @@ public class IndexController {
 	private IComunaDao IcomunaDao;
 	
 	//Siempre te presente que el metodo sin rutas por defecto si reenvia a una vista que tenga un databinding , agregale la dependencia desde el entity Acceso acceso - Me tuvo como 30 hora perdiendo tiempo.
-	@RequestMapping("/")
+	//@RequestMapping("/")
+	@RequestMapping	(value = { "", "/" })
 	public String index(Acceso acceso) {
 		return "loggin";
 	}
@@ -365,6 +366,7 @@ public class IndexController {
 		model.addAttribute("titulo", "Lista de usuarios");
 		model.addAttribute("listaUsuariosBD", IclienteDao.findAll());
 		model.addAttribute("listadoComunasBD",IcomunaDao.findAll());
+		//model.addAttribute("comunaPorId", IcomunaDao.findOne(cliente.getComuna()));
 		//Retorno la vista con la lista de usuarios.
 		return "/listaUsuariosBD";
 	}

@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import com.bolsadeideas.springboot.web.app.model.entity.Cliente;
 import com.bolsadeideas.springboot.web.app.model.entity.Comuna;
 
 @Repository
@@ -23,5 +24,13 @@ public class ComunaDaoImplements implements IComunaDao {
 		//Consulta en la tabla comunas ordenados por nombre
 		return em.createQuery("from Comuna order by nombre asc").getResultList();
 	}
+
+	@Override
+	public Comuna findOne(Long id) {
+		return em.find(Comuna.class,id);
+	}
+	
+	
+	
 
 }

@@ -103,9 +103,10 @@
 				
 	</div>
 	
-	<button id="delete">press</button> 
-	<button id="success">press</button> 
-	<button id="warning">press</button> 
+	<button id="delete" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Eliminar</button> 
+	<button id="success" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Agregar</button> 
+	<button id="warning" class="btn btn-outline-warning"><i class="far fa-edit"></i> Editar</button>
+	<br><br> 
 	
 	
 <script th:src="@{/js/bootstrap.js}"></script>
@@ -121,17 +122,17 @@
 		
 		$("#delete").click(function(){
 	    	console.log( "ready!" );
-	    	mostrar_notificacion("Aviso", "Cierre de sesión correcto.", "danger", "bottom-left");
+	    	mostrar_notificacion("Aviso", "Mensaje de eliminación personalizado...", "danger", "bottom-right");
 		});
 		
 		$("#success").click(function(){
 	    	console.log( "ready!" );
-	    	mostrar_notificacion("Aviso", "Cierre de sesión correcto.", "success", "bottom-left");
+	    	mostrar_notificacion("Aviso", "Mensaje de confirmación personalizado", "success", "bottom-right");
 		});
 		
 		$("#warning").click(function(){
 	    	console.log( "ready!" );
-	    	mostrar_notificacion("Aviso", "Cierre de sesión correcto.", "warning", "bottom-left");
+	    	mostrar_notificacion("Aviso", "Mensaje de edición personalizado", "warning", "bottom-right");
 		});
 	});
 </script>
