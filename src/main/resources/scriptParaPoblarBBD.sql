@@ -7,7 +7,7 @@ SELECT * FROM accesos;
 SELECT * FROM transportista;
 
 #Información de las tablas
-SHOW CREATE TABLE clientes;
+SHOW CREATE TABLE db_springboot.clientes;
 SHOW TABLE STATUS FROM db_springboot LIKE 'clientes';
 
 # truncar y eliminar tablas
@@ -67,16 +67,16 @@ CREATE TABLE `db_springboot`.`transportista` (
 INSERT INTO accesos (id,email,pass) VALUES (NULL,"cortizmardones@gmail.com","Mhunter.4");
 
 
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Carlos','Ortiz','cortiz@bbr.cl' , '22/03/1988' , 1);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Marcelo','Veloso','mveloso@bbr.cl' , '16/01/1992' , 1);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Gonzalo','Fernandez','gfernandez@bbr.cl' , '01/04/1985' , 13);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Esteban','Bustos','ebustos@gmail.com' , '14/09/1998' ,3);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Jose','Bernales','j.bernales@gmail.com' , '25/01/1989' , 3);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Javier','Olivares','javier.olivares@gmail.com' , '16/02/1994' , 10);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Roberto','Maturana','roberto.maturana@gmail.com' , '22/03/1988' ,3);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Mirtha','Castro','mcastro@gmail.com' , '22/03/1988' , 3);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Omar','Romero','omar.romero@gmail.com' , '22/03/1988' , 15);
-INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Katherine','Placencia','kat.placencia12@gmail.com' , '13/04/1992' , 8);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Carlos','Ortiz','cortiz@bbr.cl' , '1988-03-22' , 1);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Marcelo','Veloso','mveloso@bbr.cl' , '1992-01-16' , 1);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Gonzalo','Fernandez','gfernandez@bbr.cl' , '1985-04-01' , 13);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Esteban','Bustos','ebustos@gmail.com' , '1998-09-14' ,3);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Jose','Bernales','j.bernales@gmail.com' , '1989-01-25' , 3);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Javier','Olivares','javier.olivares@gmail.com' , '1994-02-16' , 10);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Roberto','Maturana','roberto.maturana@gmail.com' , '1988-03-22' ,3);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Mirtha','Castro','mcastro@gmail.com' , '1988-03-22' , 3);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Omar','Romero','omar.romero@gmail.com' , '1988-07-13' , 15);
+INSERT INTO clientes (id, nombre, apellido, email, create_at, id_comuna) VALUES (NULL,'Katherine','Placencia','kat.placencia12@gmail.com' , '1992-04-13' , 8);
 
 
 INSERT INTO comunas (id, nombre) VALUES (1,'Santiago');
@@ -105,7 +105,6 @@ INSERT INTO transportista (id, nombre ,apellido) VALUES (NULL,'Omar','Romero','o
 INSERT INTO transportista (id, nombre ,apellido) VALUES (NULL,'Raúl','Pardo','rpardo@gmail.com');
 INSERT INTO transportista (id, nombre ,apellido) VALUES (NULL,'Benjamin','Araneda','baraneda@gmail.com');
 
-SELECT * FROM transportista;
 
 
 

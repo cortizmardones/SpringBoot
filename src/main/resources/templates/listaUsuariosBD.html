@@ -7,9 +7,10 @@
 <meta name="author" content="" />
 <title th:text="${index}"></title>
 <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+<!-- <link th:href="@{/css/fontAwesome.css}" rel="stylesheet">  -->
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-<!-- Notificaciones elisa -->
+<!-- Notificaciones elias -->
 <link th:href="@{/notification/jquery.gritter.css}" rel="stylesheet">
 <link th:href="@{/notification/style_gritter.css}" rel="stylesheet">
 </head>
@@ -95,20 +96,22 @@
 				
 				<a th:href="@{/app/index}">Volver</a>
 				
-				<br><br><br>
-
+				<br><br><br><hr>
+				<h4><i class="fab fa-js-square"></i> Prueba de notificaciones JS</h4>
+				<br>	
+				<button id="delete" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Eliminar</button> 
+				<button id="success" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Agregar</button> 
+				<button id="warning" class="btn btn-outline-warning"><i class="far fa-edit"></i> Editar</button>
+				
+				<br><br> 
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 				
 	</div>
+
 	
-	<button id="delete" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Eliminar</button> 
-	<button id="success" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Agregar</button> 
-	<button id="warning" class="btn btn-outline-warning"><i class="far fa-edit"></i> Editar</button>
-	<br><br> 
-	
-	
+
 <script th:src="@{/js/bootstrap.js}"></script>
 <script th:src="@{/js/jquery.js}"></script>	
 <script th:src="@{/js/orderTable.js}"></script>
@@ -121,17 +124,17 @@
 	$(document).ready(function() {
 		
 		$("#delete").click(function(){
-	    	console.log( "ready!" );
+	    	console.log( "#delete!" );
 	    	mostrar_notificacion("Aviso", "Mensaje de eliminación personalizado...", "danger", "bottom-right");
 		});
 		
 		$("#success").click(function(){
-	    	console.log( "ready!" );
+	    	console.log( "#success!" );
 	    	mostrar_notificacion("Aviso", "Mensaje de confirmación personalizado", "success", "bottom-right");
 		});
 		
 		$("#warning").click(function(){
-	    	console.log( "ready!" );
+	    	console.log( "#warning!" );
 	    	mostrar_notificacion("Aviso", "Mensaje de edición personalizado", "warning", "bottom-right");
 		});
 	});
